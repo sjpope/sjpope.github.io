@@ -7,10 +7,12 @@ const CursorDiv = styled.div<{ x: number; y: number }>`
   left: 0;
   width: 32px;
   height: 32px;
-  background: url("/assets/crosshair.svg") center/contain no-repeat;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid #fff;
+  border-radius: 50%;
   pointer-events: none;
   transform: translate(${(p) => p.x}px, ${(p) => p.y}px);
-  transition: transform 0.05s linear;
+  transition: transform 0.03s linear;
   z-index: 9999;
 `;
 

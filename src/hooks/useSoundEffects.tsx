@@ -1,19 +1,21 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
-// Example assets: beep.mp3, hum.mp3 in src/assets/
 export function useSoundEffects() {
+  const [audioEnabled, setAudioEnabled] = useState(false);
   const beepSound = new Audio("/assets/beep.mp3");
-  const humSound = new Audio("/assets/hum.mp3");
+  const ambiance = new Audio("/assets/ambient_hum.mp3");
+  ambiance.loop = true;
+
+  const enableAudio = useCallback(() => {
+    setAudioEnabled(true);
+    ambiance.play().catch(() => {});
+  }, [ambiance]);
 
   const playBeep = useCallback(() => {
+    if (!audioEnabled) return;
     beepSound.currentTime = 0;
     beepSound.play().catch(() => {});
-  }, [beepSound]);
+  }, [audioEnabled, beepSound]);
 
-  const playHum = useCallback(() => {
-    humSound.currentTime = 0;
-    humSound.play().catch(() => {});
-  }, [humSound]);
-
-  return { playBeep, playHum };
+  return { audioEnabled, enableAudio, playBeep };
 }

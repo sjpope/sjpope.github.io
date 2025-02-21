@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSoundEffects } from "./hooks/useSoundEffects";
 import GlobalStyle from "./globalStyles";
+import { useSoundEffects } from "./hooks/useSoundEffects";
+
 import Header from "./components/Header";
 import FuturisticHUD from "./components/FuturisticHUD";
 import CornerOverlays from "./components/CornerOverlays";
 import CustomCursor from "./components/CustomCursor";
-import Scene from "./components/Scene";
+import SceneManager from "./components/SceneManager"; // <-- NEW advanced scene
 import Terminal from "./components/Terminal";
-import About from "./components/About";
+import About from "./components/About";    // Old approach or new
 import Projects from "./components/Projects";
 import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
 import MobileMenu from "./components/MobileMenu";
 import GSAPDemo from "./components/GSAPDemo";
+
+// Additional sections from the new approach
+import AboutSection from "./sections/AboutSection";
+import WorkSection from "./sections/WorkSection";
+import ContactSection from "./sections/ContactSection";
 
 interface SidebarProps {
   open: boolean;
@@ -25,6 +31,7 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
+// For your desktop sidebar or mobile approach
 const MainContent = styled.div`
   flex: 1;
   display: flex;
@@ -32,7 +39,6 @@ const MainContent = styled.div`
   overflow: hidden;
 `;
 
-// Desktop Sidebar component
 export const Sidebar = styled.div<SidebarProps>`
   width: 30%;
   min-width: 300px;
@@ -61,6 +67,12 @@ const ContentSections = styled.div`
   backdrop-filter: blur(4px);
 `;
 
+// The big scroll container that GSAP will watch for camera transitions
+const ScrollContainer = styled.div`
+  position: relative;
+  z-index: 5;
+`;
+
 const Section = styled.section`
   margin-bottom: 80px;
 `;
@@ -85,7 +97,6 @@ const App: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const { playBeep } = useSoundEffects();
 
-  // Update isMobile based on viewport width
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -114,8 +125,11 @@ const App: React.FC = () => {
         <FuturisticHUD />
         <CornerOverlays />
 
+        {/* The new advanced 3D scene with GSAP-based camera transitions */}
+        <SceneManager />
+
         <MainContent>
-          {/* Hamburger/Menu Button for mobile */}
+          {/* MOBILE MENU */}
           {isMobile && (
             <div
               style={{
@@ -142,12 +156,18 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {/* Render MobileMenu on mobile; otherwise render Sidebar */}
+          {/* Render MobileMenu on mobile; otherwise the desktop sidebar */}
           {isMobile ? (
             <MobileMenu open={sidebarOpen} onClose={() => setSidebarOpen(false)}>
-              <a href="#about" onClick={() => setSidebarOpen(false)}>About</a>
-              <a href="#projects" onClick={() => setSidebarOpen(false)}>Projects</a>
-              <a href="#dashboard" onClick={() => setSidebarOpen(false)}>Dashboard</a>
+              <a href="#old-about" onClick={() => setSidebarOpen(false)}>
+                Old About
+              </a>
+              <a href="#projects" onClick={() => setSidebarOpen(false)}>
+                Projects
+              </a>
+              <a href="#dashboard" onClick={() => setSidebarOpen(false)}>
+                Dashboard
+              </a>
             </MobileMenu>
           ) : (
             <Sidebar open={sidebarOpen}>
@@ -166,22 +186,35 @@ const App: React.FC = () => {
             </Sidebar>
           )}
 
+          {/* This container includes your old approach + new sections */}
           <ContentSections>
-            <Section id="about">
-              <About />
-            </Section>
-            <Section id="projects">
-              <Projects />
-            </Section>
-            <Section id="dashboard">
-              <Dashboard />
-            </Section>
-            {/* GSAP Demo to show scroll-based animation */}
-            <Section id="gsap-demo">
-              <GSAPDemo />
-            </Section>
+            <ScrollContainer id="scroll-container">
+              {/* Old approach sections */}
+              <Section id="old-about">
+                <About />
+              </Section>
+              <Section id="projects">
+                <Projects />
+              </Section>
+              <Section id="dashboard">
+                <Dashboard />
+              </Section>
+              <Section id="gsap-demo">
+                <GSAPDemo />
+              </Section>
+
+              {/* New approach sections */}
+              <Section id="about">
+                <AboutSection />
+              </Section>
+              <Section id="work">
+                <WorkSection />
+              </Section>
+              <Section id="contact">
+                <ContactSection />
+              </Section>
+            </ScrollContainer>
           </ContentSections>
-          <Scene />
         </MainContent>
         <Footer />
       </Container>

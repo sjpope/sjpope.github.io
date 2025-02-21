@@ -7,15 +7,14 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Exo 2', sans-serif; /* Sci-fi font */
-    background: linear-gradient(120deg, #000 30%, #333 70%);
-    color: #0f0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at 50% 50%, #1a1a1a, #000);
+    color: #fff;
     overflow-x: hidden;
-    /* Hide default cursor if we are using a custom cursor */
-    cursor: none;
+    cursor: none; /* We'll use a custom cursor */
   }
   a {
-    color: #0f0;
+    color: #fff;
     text-decoration: none;
   }
 `;
