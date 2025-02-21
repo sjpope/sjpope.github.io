@@ -1,15 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
 
 const TerminalContainer = styled.div`
   background: #000;
-  color: #0f0;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
   padding: 10px;
-  height: 400px;
+  height: 350px;
   overflow-y: auto;
-  border: 1px solid #333;
+  border: 1px solid #0f0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #0f0;
 `;
 
 const InputRow = styled.div`
@@ -29,7 +29,7 @@ const Input = styled.input`
   outline: none;
   flex: 1;
   font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
+  font-size: 10px;
 `;
 
 interface Command {
@@ -39,36 +39,42 @@ interface Command {
 
 const Terminal: React.FC = () => {
   const [history, setHistory] = useState<Command[]>([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   const executeCommand = (command: string) => {
-    let output = '';
-    switch (command.trim().toLowerCase()) {
-      case 'help':
-        output = 'Available commands: help, about, clear';
+    let output = "";
+    const lowerCmd = command.trim().toLowerCase();
+    switch (lowerCmd) {
+      case "help":
+        output = "Available commands: help, about, projects, clear";
         break;
-      case 'about':
-        output = 'This is sjpope’s interactive portfolio terminal. Explore projects and more!';
+      case "about":
+        output = "Scrolling to About section...";
+        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
         break;
-      case 'clear':
+      case "projects":
+        output = "Scrolling to Projects section...";
+        document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "clear":
         setHistory([]);
         return;
       default:
-        output = `Command not recognized: ${command}`;
+        output = `Unknown command: ${command}`;
     }
-    setHistory([...history, { command, output }]);
+    setHistory((prev) => [...prev, { command, output }]);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       executeCommand(inputValue);
-      setInputValue('');
+      setInputValue("");
     }
   };
 
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    terminalEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
   return (
