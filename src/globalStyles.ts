@@ -7,10 +7,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Exo 2', sans-serif; /* Sci-fi font for main text */
-    background: radial-gradient(closest-side at 50% 50%, #000 0%, #020202 100%);
+    font-family: 'Exo 2', sans-serif; /* Sci-fi font */
+    background: linear-gradient(120deg, #000 30%, #333 70%);
     color: #0f0;
     overflow-x: hidden;
+    /* Hide default cursor if we are using a custom cursor */
+    cursor: none;
   }
   a {
     color: #0f0;

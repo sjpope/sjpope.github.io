@@ -6,6 +6,7 @@
   "dependencies": {
     "@react-three/drei": "^10.0.0",
     "@react-three/fiber": "^9.0.4",
+    "@react-three/postprocessing": "^3.0.4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -15,6 +16,8 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "framer-motion": "^12.4.7",
+    "gsap": "^3.12.7",
+    "postprocessing": "^6.36.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",

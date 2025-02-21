@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Html, Stars } from "@react-three/drei";
+import { OrbitControls, Stars } from "@react-three/drei";
+import { EffectComposer, Bloom, Glitch } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 const HaloRing: React.FC<{ position: [number, number, number] }> = ({ position }) => {
@@ -15,9 +16,8 @@ const HaloRing: React.FC<{ position: [number, number, number] }> = ({ position }
 
   return (
     <mesh ref={ringRef} position={position}>
-      {/* A large torus to resemble a Halo ring */}
       <torusGeometry args={[5, 0.2, 32, 100]} />
-      <meshStandardMaterial color="#0f0" wireframe />
+      <meshStandardMaterial color="#fafad2" wireframe />
     </mesh>
   );
 };
@@ -35,7 +35,7 @@ const FloatingObject: React.FC<{ position: [number, number, number] }> = ({ posi
   return (
     <mesh ref={objRef} position={position}>
       <octahedronGeometry args={[0.5, 0]} />
-      <meshStandardMaterial color="#ffeb3b" wireframe />
+      <meshStandardMaterial color="#c0c0c0" wireframe />
     </mesh>
   );
 };
@@ -60,6 +60,13 @@ const Scene: React.FC = () => {
       <FloatingObject position={[2, 2, 0]} />
       <FloatingObject position={[-2, -3, 1]} />
       <OrbitControls enableZoom={false} enablePan={false} />
+      <EffectComposer>
+        <Bloom intensity={0.3} />
+        <Glitch 
+          delay={new THREE.Vector2(1.5, 3.5)} 
+          duration={new THREE.Vector2(0.1, 0.3)} 
+        />
+      </EffectComposer>
     </Canvas>
   );
 };
