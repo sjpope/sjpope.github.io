@@ -47,7 +47,7 @@ const Terminal: React.FC = () => {
     const lowerCmd = command.trim().toLowerCase();
     switch (lowerCmd) {
       case "help":
-        output = "Available commands: help, about, projects, clear";
+        output = "Available commands: help, about, projects, dashboard, clear";
         break;
       case "about":
         output = "Scrolling to About section...";
@@ -56,6 +56,10 @@ const Terminal: React.FC = () => {
       case "projects":
         output = "Scrolling to Projects section...";
         document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "dashboard":
+        output = "Scrolling to Dashboard section...";
+        document.getElementById("dashboard")?.scrollIntoView({ behavior: "smooth" });
         break;
       case "clear":
         setHistory([]);

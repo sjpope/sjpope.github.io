@@ -5,6 +5,7 @@ import Terminal from "./components/Terminal";
 import Scene from "./components/Scene";
 import Projects from "./components/Projects";
 import About from "./components/About";
+import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
 
 const Container = styled.div`
@@ -74,6 +75,9 @@ const App: React.FC = () => {
           </Section>
           <Section id="projects">
             <Projects />
+          </Section>
+          <Section id="dashboard">
+            <Dashboard />
           </Section>
         </ContentSections>
         <Scene />

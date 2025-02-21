@@ -35,7 +35,7 @@ const Projects: React.FC = () => {
       url: "https://github.com/sjpope/FlowNote"
     },
     {
-      title: "MetricsMonitor-Mini",
+      title: "MetricsMonitor‑Mini",
       description:
         "Lightweight Linux system monitoring tool that collects CPU, memory, disk, and network metrics and sends them to an Azure Log Analytics Workspace.",
       url: "https://github.com/sjpope/MetricsMonitor-Mini"

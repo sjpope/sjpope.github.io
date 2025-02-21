@@ -31,7 +31,9 @@ const Header: React.FC = () => {
           <li>
             <a href="#projects">Projects</a>
           </li>
-          {/* Add more links as needed */}
+          <li>
+            <a href="#dashboard">Dashboard</a>
+          </li>
         </NavList>
       </nav>
     </HeaderContainer>
