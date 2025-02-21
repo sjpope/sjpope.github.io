@@ -1,5 +1,7 @@
+// src/sections/ChartsSection.tsx
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import {
   PieChart,
   Pie,
@@ -14,7 +16,7 @@ import {
   CartesianGrid,
 } from "recharts";
 
-const ChartsContainer = styled.div`
+const ChartsContainer = styled(motion.section)`
   min-height: 100vh;
   padding: 40px;
   background: transparent;
@@ -22,6 +24,7 @@ const ChartsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   color: #fff;
+  align-items: center;
 `;
 
 const SectionTitle = styled.h1`
@@ -30,7 +33,18 @@ const SectionTitle = styled.h1`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   text-align: center;
+  color: #0f0;
+  text-shadow: 0 0 6px #0f0;
 `;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
 
 interface CommitData {
   date: string;
@@ -92,14 +106,20 @@ const ChartsSection: React.FC = () => {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#af00fe", "#fe0088"];
 
   return (
-    <ChartsContainer>
+    <ChartsContainer
+      id="charts"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+    >
       <SectionTitle>GitHub Dashboard</SectionTitle>
       {loading ? (
         <p>Loading data...</p>
       ) : (
         <>
-          <div style={{ width: "100%", height: 300, marginBottom: "20px" }}>
-            <h3 style={{ textAlign: "center" }}>Recent Commits</h3>
+          <div style={{ width: "80%", height: 300, marginBottom: "20px" }}>
+            <h3 style={{ textAlign: "center", marginBottom: "10px" }}>Recent Commits</h3>
             <ResponsiveContainer>
               <LineChart data={commitData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#333" />
@@ -112,8 +132,8 @@ const ChartsSection: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          <div style={{ width: "100%", height: 300 }}>
-            <h3 style={{ textAlign: "center" }}>Languages Breakdown</h3>
+          <div style={{ width: "80%", height: 300 }}>
+            <h3 style={{ textAlign: "center", marginBottom: "10px" }}>Languages Breakdown</h3>
             <ResponsiveContainer>
               <PieChart>
                 <Pie

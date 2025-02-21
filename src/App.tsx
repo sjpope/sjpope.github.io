@@ -25,6 +25,10 @@ const App: React.FC = () => {
       <HUDOverlay />
       <NavOverlay />
 
+      {/* 
+        The scroll container must have multiple sections 
+        each at least 100vh so there's enough scroll to see the camera movement 
+      */}
       <div id="scroll-container" style={{ position: "relative", zIndex: 5 }}>
         <IntroSection audioEnabled={audioEnabled} enableAudio={enableAudio} />
         <AboutSection />
