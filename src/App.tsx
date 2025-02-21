@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "./components/Header";
+import FuturisticHUD from "./components/FuturisticHUD";
 import Terminal from "./components/Terminal";
 import Scene from "./components/Scene";
 import Projects from "./components/Projects";
@@ -36,7 +37,7 @@ const ContentSections = styled.div`
   position: relative;
   z-index: 2;
   padding: 40px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
 `;
 
@@ -50,6 +51,9 @@ const App: React.FC = () => {
   return (
     <Container>
       <Header />
+      {/* Futuristic HUD overlay */}
+      <FuturisticHUD />
+
       <MainContent>
         <Sidebar>
           {terminalVisible && <Terminal />}
