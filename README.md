@@ -1,2 +1,0 @@
-# sjpope.github.io
-Portfolio
