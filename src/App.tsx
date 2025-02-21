@@ -97,12 +97,12 @@ const App: React.FC = () => {
 
   const handleToggleTerminal = () => {
     setTerminalVisible((prev) => !prev);
-    playBeep(); // beep on toggle
+    playBeep();
   };
 
   const handleToggleSidebar = () => {
     setSidebarOpen((prev) => !prev);
-    playBeep(); // beep on menu open/close
+    playBeep();
   };
 
   return (
@@ -176,7 +176,7 @@ const App: React.FC = () => {
             <Section id="dashboard">
               <Dashboard />
             </Section>
-            {/* Include GSAP demo to show scroll-based animation */}
+            {/* GSAP Demo to show scroll-based animation */}
             <Section id="gsap-demo">
               <GSAPDemo />
             </Section>

@@ -28,7 +28,7 @@ const GSAPDemo: React.FC = () => {
           start: "top center",
           end: "bottom center",
           scrub: true,
-          markers: true, // Set to false when not debugging
+          markers: true, // set to false for production
         },
         x: 100,
         opacity: 0,
