@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+
+const Container = styled.section`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px;
-  background: transparent; /* Let the 3D scene show through */
+  align-items: center;
 `;
+
 
 const Title = styled.h1`
   font-size: 3rem;
@@ -25,14 +26,14 @@ const Text = styled.p`
 
 const AboutSection: React.FC = () => {
   return (
-    <Container>
-      <Title>About Me</Title>
-      <Text>
+    <Container id="about">
+      <h1>About Me</h1>
+      <p>
         I’m a developer who loves to push boundaries and create futuristic
         digital experiences. My passion lies in blending advanced 3D visuals,
         interactive UI, and cutting-edge technologies to produce immersive,
         game-like interfaces.
-      </Text>
+      </p>
     </Container>
   );
 };
