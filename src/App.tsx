@@ -10,7 +10,7 @@ import WorkSection from "./sections/WorkSection";
 import ContactSection from "./sections/ContactSection";
 
 const App: React.FC = () => {
-  const { audioEnabled, enableAudio, playBeep } = useSoundEffects();
+  const { audioEnabled, enableAudio } = useSoundEffects();
 
   return (
     <>
@@ -19,7 +19,7 @@ const App: React.FC = () => {
       <SceneManager />
       <HUDOverlay />
 
-      {/* The main scrollable container that GSAP will watch */}
+      {/* Main scrollable container */}
       <div id="scroll-container" style={{ position: "relative", zIndex: 5 }}>
         <IntroSection audioEnabled={audioEnabled} enableAudio={enableAudio} />
         <AboutSection />

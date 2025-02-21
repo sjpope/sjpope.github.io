@@ -4,7 +4,9 @@ import { OrbitControls, Stars } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SkullModel from "./SkullModel";
+// import SkullModel from "./SkullModel";
+import HologramCity from "./HologramCity";
+
 import * as THREE from "three";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -72,8 +74,8 @@ const SceneContents: React.FC = () => {
       <ambientLight intensity={0.2} />
       <pointLight position={[10, 10, 10]} intensity={0.9} />
       <RotatingRing />
-      <group ref={skullRef} position={[0, -2, 0]}>
-        <SkullModel scale={2} />
+      <group position={[0, -2, 0]}>
+        <HologramCity />
       </group>
       <EffectComposer>
         <Bloom intensity={0.4} />
